@@ -55,7 +55,11 @@ Link : https://aas-vetrivel-hari.vercel.app/ <br>
 MongoDB is hosted using MongoDB Atlas. <br>
 
 ### SCREENSHOTS OF DATABASE
-
+<img src="dbimages/img1.png"/>
+<img src="dbimages/img2.png"/>
+<img src="dbimages/img3.png"/>
+<img src="dbimages/img4.png"/>
+<img src="dbimages/img5.png"/>
 
 ### FUTURE UPDATES
 Dedicated web app for faculty, so that any classroom or attendance changes can be recorded manually.

@@ -24,14 +24,16 @@ their roll number. <br>
 ## BACKEND
 
 ### WORKING
-This repo contains the flask application that handles the working of backend in the automated attendance system.
+This repo contains the flask application that handles the working of backend in the automated attendance system. <br>
 
 #### API ENDPOINTS
-###### /api/attendance (POST) : 
+##### /api/attendance (POST) : 
 This api endpoint receives the roll number of the student, current latitude and longitude, image of the student and timestamp when the
-request was made. With the given timestamp and the roll number of the student, the hall and course code along with the faculty for which attendance needs to be recorded is identified with the help of timetable stored in the database.
-
-
+request was made. With the given timestamp and the roll number of the student, the hall and course code along with the faculty for which attendance needs to be recorded is identified with the help of timetable stored in the database. <br><br>
+The <b> facial image </b> received from the frontend is compared with the already recorded facial image of that particular student available in the database in order to <b> verify the identity of the student </b>. <br><br>
+The coordinates collected is compared with the already stored four corner coordinates of each hall. If the collected point lies in between the
+four coordinates, then it can be confirmed that the student is within the classroom. <br><br>
+If the above mentioned verifications are successfully passed then the student is provided attendance for that particular course. <br>
 
 ### APIs USED
 <ul>
@@ -47,7 +49,13 @@ request was made. With the given timestamp and the roll number of the student, t
 </ul>
 
 ### DEPLOYMENT - HEROKU
-Hosted Link : https://automatic-attendance-system-3.herokuapp.com/api/attendance
+Hosted Link : https://automatic-attendance-system-3.herokuapp.com/api/attendance <br>
+NOTE : To use the web application use the link given below <br>
+Link : https://aas-vetrivel-hari.vercel.app/ <br>
+MongoDB is hosted using MongoDB Atlas. <br>
+
+### SCREENSHOTS OF DATABASE
+
 
 ### FUTURE UPDATES
 Dedicated web app for faculty, so that any classroom or attendance changes can be recorded manually.

@@ -64,6 +64,7 @@ class Attendance(Resource):
         print("---------------------------SAVING IMAGE-------------------------------------")
         #Save image
         image = image[image.index(",")+1: ]
+        print(image)
         decodeit = open(rollno + ".jpg", 'wb')
         decodeit.write(base64.b64decode((image)))
         decodeit.close()

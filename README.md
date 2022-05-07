@@ -21,6 +21,9 @@ The above mentioned objective is achieved by :
 their roll number. <br>
 <b> Student's current location </b> is verified by collecting their current <b> latitude </b> and <b> longitude </b> coordinates. <br>
 
+## DEMO VIDEO
+DRIVE LINK : https://drive.google.com/file/d/1rwdYpvpI4OtBLmW_PB0r7qA40F4DTQZb/view?usp=drivesdk
+
 ## BACKEND
 
 ### WORKING
@@ -49,9 +52,9 @@ If the above mentioned verifications are successfully passed then the student is
 </ul>
 
 ### DEPLOYMENT - HEROKU
-Hosted Link : https://automatic-attendance-system-3.herokuapp.com/api/attendance <br>
+HOSTED LINK : https://automatic-attendance-system-3.herokuapp.com/api/attendance <br>
 NOTE : To use the web application use the link given below <br>
-Link : https://aas-vetrivel-hari.vercel.app/ <br>
+LINK : https://aas-vetrivel-hari.vercel.app/ <br>
 MongoDB is hosted using MongoDB Atlas. <br>
 
 ### SCREENSHOTS OF DATABASE

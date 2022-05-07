@@ -21,6 +21,13 @@ The above mentioned objective is achieved by :
 their roll number. <br>
 <b> Student's current location </b> is verified by collecting their current <b> latitude </b> and <b> longitude </b> coordinates. <br>
 
+## ADVANTAGES
+<ul>
+  <li>Affordable</li>
+  <li>OS Independent and Device Independent (Can be used in any OS as it is hosted in web)</li>
+  <li>Students can post attendance from any device even if they forgot their devices at home</li>
+</ul>
+
 ## DEMO VIDEO
 DRIVE LINK : https://drive.google.com/file/d/1rwdYpvpI4OtBLmW_PB0r7qA40F4DTQZb/view?usp=drivesdk
 

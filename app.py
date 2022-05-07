@@ -6,6 +6,12 @@ from pymongo import MongoClient
 from flask import Flask, request
 from flask_restful import Api, Resource
 from flask_cors import CORS, cross_origin
+from imagekitio import ImageKit
+
+imagekit = ImageKit(
+    private_key = 'private_WrxZPJhyTPfaW7fg+vVhdYcA+xM=',
+    public_key = 'public_zskDEmBVQzt/Rz7rdX3lwqNwm60=',
+    url_endpoint = 'https://ik.imagekit.io/rf39vtebd')
 
 app = Flask(__name__)
 api = Api(app)
@@ -64,12 +70,16 @@ class Attendance(Resource):
 
         print("---------------------------SAVING IMAGE-------------------------------------")
         #Save image
-        image = image[image.index(",")+1: ]
+        imgstr = image[image.index(",")+1: ]
         #print(image)
-        decodeit = open(rollno + ".jpg", 'wb')
-        print(os.getcwd())
-        decodeit.write(base64.b64decode((image)))
-        decodeit.close()
+        upload = imagekit.upload(
+            file = imgstr,
+            file_name = rollno + ".jpg",
+            options={},
+        )
+
+        print(upload)
+
         print("---------------------------GUESS IMAGE IS SAVED-------------------------------------")
 
         #Get current students details

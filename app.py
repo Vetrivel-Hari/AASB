@@ -208,27 +208,6 @@ class Attendance(Resource):
 
         return {"message": "Late to Class"}
 
-
-'''
-x = {
-    "Rollno" : "20PC40",
-    "Courses": {
-        "20XC41": 0,
-        "20XC42": 0,
-        "20XC43": 0,
-        "20XC44": 0,
-        "20XC45": 0,
-        "20XC46": 0,
-        "20XC47": 0,
-        "20XC48": 0,
-    }
-}
-
-post_id = student.insert_one(x).inserted_id
-
-print(post_id)
-'''
-
 @app.route("/")
 def index():
     return "Welcome Back!"

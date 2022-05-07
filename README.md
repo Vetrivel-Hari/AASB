@@ -15,7 +15,7 @@ The objective of the solution is to reduce proxying, reduce time and effort take
 The above mentioned objective is achieved by :
 <ul>
   <li>Verifying and authenticating the student identity</li>
-  <li>Veryfing the current location of the student</li>
+  <li>Verifying the current location of the student</li>
 </ul>
 <b> Verification and authentication of student identity </b> is achieved using the <b> facial recognition </b> of the student along with
 their roll number. <br>

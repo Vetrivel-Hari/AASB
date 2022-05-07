@@ -61,11 +61,13 @@ class Attendance(Resource):
         longitude = request.form["longitude"]
         image = request.form['image']
 
+        print("---------------------------SAVING IMAGE-------------------------------------")
         #Save image
         image = image[image.index(",")+1: ]
         decodeit = open(rollno + ".jpg", 'wb')
         decodeit.write(base64.b64decode((image)))
         decodeit.close()
+        print("---------------------------GUESS IMAGE IS SAVED-------------------------------------")
 
         #Get current students details
         student_details = student.find_one({"Rollno": rollno})

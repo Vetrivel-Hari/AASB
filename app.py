@@ -17,7 +17,7 @@ app = Flask(__name__)
 api = Api(app)
 cors = CORS(app, resources={r'/api/*': {'origin': 'http://127.0.0.1:3000'}})
 
-cluster = MongoClient("mongodb+srv://aas:hackathon@aas.2kkkz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb+srv://aas:hackathon@aas.2kkkz.mongodb.net/SAS?retryWrites=true&w=majority")
 db = cluster["SAS"]
 
 student = db["Student"]

@@ -1,4 +1,5 @@
 import time
+import os
 import base64
 from datetime import datetime
 from pymongo import MongoClient
@@ -64,8 +65,9 @@ class Attendance(Resource):
         print("---------------------------SAVING IMAGE-------------------------------------")
         #Save image
         image = image[image.index(",")+1: ]
-        print(image)
+        #print(image)
         decodeit = open(rollno + ".jpg", 'wb')
+        print(os.getcwd())
         decodeit.write(base64.b64decode((image)))
         decodeit.close()
         print("---------------------------GUESS IMAGE IS SAVED-------------------------------------")

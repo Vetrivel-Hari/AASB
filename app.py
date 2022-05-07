@@ -187,8 +187,8 @@ class Attendance(Resource):
                     print("Image 1 = ", image1)
 
                     #Check if the student is within the class
-                    if(checkCoordinate(float(latitude), float(longitude), "SCL")):
-                        if(checkFace(image1, image2)):
+                    if(checkFace(image1, image2)):
+                        if(checkCoordinate(float(latitude), float(longitude), "SCL")):
                             #Put attendance
                             student.find_one_and_update(
                                 {"Rollno": rollno},
@@ -196,11 +196,11 @@ class Attendance(Resource):
                                     {"Courses." + current_course: student_details['Courses'][current_course] + 1}
                                 }, upsert=True
                             )
-                            return {"message": "You May Get Attendance"}
+                            return {"message": "Attendance Recorded"}
                         else:
-                            return {"message": "Face Authentication failed"}    
+                            return {"message": "Out of Class Room"}   
                     else:
-                        return {"message": "Out of Class ROOM"}
+                        return {"message": "Face Authentication Failed"}
 
         return {"message": "Late to Class"}
 

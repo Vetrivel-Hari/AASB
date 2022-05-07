@@ -123,6 +123,7 @@ class Attendance(Resource):
         print("---------------------------SAVING IMAGE-------------------------------------")
         #Save image
         imgstr = image[image.index(",")+1: ]
+        print(imgstr)
         #print(image)
         upload = imagekit.upload(
             file = imgstr,

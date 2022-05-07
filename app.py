@@ -1,3 +1,4 @@
+from __future__ import print_function, unicode_literals
 import time
 import os
 import base64
@@ -6,7 +7,16 @@ from pymongo import MongoClient
 from flask import Flask, request
 from flask_restful import Api, Resource
 from flask_cors import CORS, cross_origin
+from facepplib import FacePP, exceptions
 from imagekitio import ImageKit
+
+face_detection = ""
+faceset_initialize = ""
+face_search = ""
+face_landmarks = ""
+dense_facial_landmarks = ""
+face_attributes = ""
+beauty_score_and_emotion_recognition = ""
 
 imagekit = ImageKit(
     private_key = 'private_WrxZPJhyTPfaW7fg+vVhdYcA+xM=',
@@ -26,6 +36,48 @@ hall = db["Hall"]
 timetable = db["Timetable"]
 timing = db["Timing"]
 
+
+def face_comparing(app, Image1, Image2):
+    print()
+    print('-' * 30)
+    print('Comparing Photographs......')
+    print('-' * 30)
+
+    cmp_ = app.compare.get(image_url1=Image1,
+                           image_url2=Image2)
+
+    # Comparing Photos
+    if cmp_.confidence > 70:
+        print('Both photographs are of same person......')
+        return True
+    else:
+        print('Both photographs are of two different persons......')
+        return False
+
+def checkFace(link1, link2):
+    api_key = 'xQLsTmMyqp1L2MIt7M3l0h-cQiy0Dwhl'
+    api_secret = 'TyBSGw8NBEP9Tbhv_JbQM18mIlorY6-D'
+
+    try:
+        # call api
+        app_ = FacePP(api_key=api_key,
+                      api_secret=api_secret)
+        funcs = [
+            face_detection,
+            faceset_initialize,
+            face_search,
+            face_landmarks,
+            dense_facial_landmarks,
+            face_attributes,
+            beauty_score_and_emotion_recognition
+        ]
+
+        # Pair 1
+        image1 = link1#'https://ik.imagekit.io/rf39vtebd/20PC16_Harish_Narayan_B_f7lQFg8PG.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651905645639'
+        image2 = link2#'https://ik.imagekit.io/rf39vtebd/20PC16_3x0bTh_6r.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651905781550'
+        return face_comparing(app_, image1, image2)
+    except exceptions.BaseFacePPError as e:
+        print('Error:', e)
 
 def checkCoordinate(latitude, longitude, hall_id):
     hall_details = hall.find_one({"Hall_id": hall_id})
@@ -78,7 +130,8 @@ class Attendance(Resource):
             options={},
         )
 
-        print(upload)
+        image2 = upload['response']['url']
+        print(image2)
 
         print("---------------------------GUESS IMAGE IS SAVED-------------------------------------")
 
@@ -116,17 +169,18 @@ class Attendance(Resource):
 
                     #Check if the student is within the class
                     if(checkCoordinate(float(latitude), float(longitude), "SCL")):
-                        #if face matches
-                        #Put attendance
-                        student.find_one_and_update(
-                            {"Rollno": rollno},
-                            {"$set":
-                                 {"Courses." + current_course: student_details['Courses'][current_course] + 1}
-                             }, upsert=True
-                        )
+                        if(checkFace('https://ik.imagekit.io/rf39vtebd/20PC16_Harish_Narayan_B_f7lQFg8PG.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651905645639', image2)):
+                            #Put attendance
+                            student.find_one_and_update(
+                                {"Rollno": rollno},
+                                {"$set":
+                                    {"Courses." + current_course: student_details['Courses'][current_course] + 1}
+                                }, upsert=True
+                            )
 
-                        return {"message": "You May Get Attendance"}
-                        pass
+                            return {"message": "You May Get Attendance"}
+                        else:
+                            return {"message": "Face Authentication failed"}    
                     else:
                         return {"message": "Out of Class ROOM"}
 

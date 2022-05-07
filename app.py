@@ -133,6 +133,10 @@ class Attendance(Resource):
 
         rollno = rollno.upper()
 
+        print(rollno)
+        print(latitude)
+        print(longitude)
+        
         print("---------------------------SAVING IMAGE-------------------------------------")
         #Save image
         imgstr = image[image.index(",")+1: ]

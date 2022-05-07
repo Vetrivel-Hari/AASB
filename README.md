@@ -28,8 +28,9 @@ their roll number. <br>
   <li>Students can post attendance from any device even if they forgot their devices at home</li>
 </ul>
 
-## DEMO VIDEO
+## DEMO
 DRIVE LINK : https://drive.google.com/file/d/1rwdYpvpI4OtBLmW_PB0r7qA40F4DTQZb/view?usp=drivesdk
+PRESENTATION : https://drive.google.com/file/d/1sPYA8FAysnkNSz-SnBinYfOVd41TarSp/view?usp=drivesdk
 
 ## BACKEND
 

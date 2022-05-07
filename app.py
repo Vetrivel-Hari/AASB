@@ -138,6 +138,10 @@ post_id = student.insert_one(x).inserted_id
 print(post_id)
 '''
 
+@app.route("/")
+def index():
+    return "Welcome Back!"
+
 api.add_resource(Attendance, "/api/attendance")
 
 if __name__ == "__main__":

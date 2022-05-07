@@ -108,6 +108,17 @@ def checkCoordinate(latitude, longitude, hall_id):
 
     return False
 
+'''
+def deleteImage():
+    list_files = imagekit.list_files({"skip": 0, "limit": 10})
+
+    for i in list_files['response']:
+        if(i['name'].find("_temp") != -1):
+            print(i['fileId'])
+            delete = imagekit.delete_file(i['fileId'])
+
+            print("Delete File-", delete)
+'''
 
 class Attendance(Resource):
     def get(self):
@@ -120,19 +131,21 @@ class Attendance(Resource):
         longitude = request.form["longitude"]
         image = request.form['image']
 
+        rollno = rollno.upper()
+
         print("---------------------------SAVING IMAGE-------------------------------------")
         #Save image
-        print(image)
         imgstr = image[image.index(",")+1: ]
         
         #print(image)
         upload = imagekit.upload(
             file = imgstr,
-            file_name = rollno + ".jpg",
+            file_name = rollno + "_temp.jpg",
             options={},
         )
 
         image2 = upload['response']['url']
+        print(upload)
         print(image2)
 
         print("---------------------------GUESS IMAGE IS SAVED-------------------------------------")
@@ -169,9 +182,13 @@ class Attendance(Resource):
                     print(current_course)
                     print(current_hall)
 
+                    image1 = student.find_one({"Rollno": rollno})["image_url"]
+                    print(image1)
+                    print("Image 1 = ", image1)
+
                     #Check if the student is within the class
                     if(checkCoordinate(float(latitude), float(longitude), "SCL")):
-                        if(checkFace('https://ik.imagekit.io/rf39vtebd/20PC16_Harish_Narayan_B_f7lQFg8PG.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651905645639', image2)):
+                        if(checkFace(image1, image2)):
                             #Put attendance
                             student.find_one_and_update(
                                 {"Rollno": rollno},
@@ -179,7 +196,6 @@ class Attendance(Resource):
                                     {"Courses." + current_course: student_details['Courses'][current_course] + 1}
                                 }, upsert=True
                             )
-
                             return {"message": "You May Get Attendance"}
                         else:
                             return {"message": "Face Authentication failed"}    
